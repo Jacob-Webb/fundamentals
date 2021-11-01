@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataStructsAndAlgos.Lists
+namespace datastructures.Lists
 {
     public class Node<T>
       {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructsAndAlgos.Lists
+namespace datastructures.Lists
 {
     public class SinglyLinkedList<T> : IEnumerable<T>
     {
