@@ -23,7 +23,7 @@ namespace datastructures.Lists
       {
         if (IsNull(listToCopy)) 
         {
-          throw new ArgumentNullException($"Singularly Linked List copy constructor cannot take null argument {listToCopy}");
+          throw new ArgumentNullException($"Singularly Linked List copy constructor cannot take null argument");
         }
         var walkingNode = listToCopy.Head;
         var newListNode = new Node<T>(walkingNode.Element, null);
