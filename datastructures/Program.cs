@@ -1,12 +1,13 @@
 ﻿using System;
-using datastructures.Lists;
+using DataStructures.Lists;
 
-namespace datastructures
+namespace DataStructures
 {
   class Program
   {
       public static void Main(String[] args) {
-      var myList = new SinglyLinkedList<int>(null);
+
+
     }
   }
 
