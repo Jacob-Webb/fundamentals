@@ -4,6 +4,7 @@ This repository holds some implementations (and testing) of data structures and 
 
 ## Lists
 ### Common Functionality (with Space and Time Complexity)
+
 #### Constructors and Assignment
 * `LinkedList<T>()`
   * Default constructor
@@ -11,25 +12,32 @@ This repository holds some implementations (and testing) of data structures and 
 * `DeepCopy()`
   * Returns a deep copy list utilizing a copy constructor
   * Space Complexity: O(n); Time Complexity: O(n)
+
 #### Element Access
-* `Front()`
+* `Head`
   * Returns the first element of the list
   * Space Complexity: O(1); Time Complexity: O(1)
-* `Last()`
+* `Tail`
   * Returns the last element of the list
-  * Space Complexity: O(1); Time Complexity: ? 
+  * Space Complexity: O(1); Time Complexity: O(1) 
+
 #### Insertion and Removal
 * `InsertFirst(element)`
   * Add `element` to the first position of the list
   * Space Complexity: O(1); Time Complexity: O(1)
 * `InsertLast(element)`
-* `InsertAt(node, element)`
+  * Add `element` to the last position of the list
+  * Space Complexity: O(1); Time Complexity: O(1)
+* `InsertBefore(index, element)`
+  * Add `element` direclty before the given Node indicated by `index`
+  * Space Complexity: O(1); Time Complexity: O(n)
 * `PopFront()`
   * Remove and return the first node of the list
   * Space Complexity: O(1); Time Complexity: O(1)
 * `PopBack()`
 * `Remove(node)`
 * `Remove(element)`
+
 #### Size
 * `Empty()`
 * `Count`

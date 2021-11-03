@@ -40,43 +40,52 @@ namespace DataStructures.Lists
 
       Tail = newListNode;
     }
-    public bool InsertFirst(T element)
+    public void InsertFirst(T element)
     {
-      Head = new Node<T>(element, Head);
-      ++Count;
-      if(Count == 1) Tail = Head;
-      return true;
+      InsertBefore(0, element);
+      //Head = new Node<T>(element, Head);
+      // ++Count;
+      // if(Count == 1) Tail = Head;
     }
-    public bool Insert(int position, T element)
+    public void InsertLast(T element)
     {
-      if(IsNull(element) || IsNull(position)) 
+      if (Tail == null)
       {
-        throw new ArgumentNullException($"Argument {element} and {position} must both be non-null");
+        Head = Tail = new Node<T>(element, Head);
+      } else {
+        Tail.Next = new Node<T>(element, null);
+        Tail = Tail.Next;
       }
-      if (position < 0) {
-        throw new ArgumentOutOfRangeException($"Position {position} must be a positive integer");
+      Count++;
+    }
+    public void InsertBefore(int index, T element)
+    {
+      if(IsNull(element)) 
+      {
+        throw new ArgumentNullException($"{nameof(element)} must be non-null");
       }
-      if (position > Count) 
-      {
-        throw new ArgumentOutOfRangeException($"Position {position} must be less than SinglyLinkedList.Count");
+      if (index < 0) {
+        throw new ArgumentOutOfRangeException($"{nameof(index)} must be a positive integer");
       }
-
-      var newNode = new Node<T>(element);
-      if (position == 0) // Add new Node as Head
+      if (index > Count) 
       {
-        newNode.Next = Head;
-        Head = newNode;
-      } else if (position == Count) // Add new Node as Tail
-      {
-
-      } else // Add new Node before Node at position
-      {
-
+        throw new ArgumentOutOfRangeException($"{nameof(index)} must be less than SinglyLinkedList.Count");
       }
 
+      if (index == 0)            // Add new Node as Head
+      {
+        Head = new Node<T>(element, Head);
+        if(Count == 0) Tail = Head;
+      } else {                   // Add new Node before Node at position
+        var walkingNode = Head;
+        for (int i = 0; i < index - 1; ++i) {
+          walkingNode = walkingNode.Next;
+        }
+        var newNode = new Node<T>(element, walkingNode.Next);
+        walkingNode.Next = newNode;
+      }
 
-      return true;
-      
+      ++Count;
     }
     
     public override string ToString()
