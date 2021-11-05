@@ -31,12 +31,18 @@ This repository holds some implementations (and testing) of data structures and 
 * `InsertBefore(index, element)`
   * Add `element` direclty before the given Node indicated by `index`
   * Space Complexity: O(1); Time Complexity: O(n)
-* `PopFront()`
+* `RemoveFirst()`
   * Remove and return the first node of the list
   * Space Complexity: O(1); Time Complexity: O(1)
-* `PopBack()`
-* `Remove(node)`
+* `RemoveLast()`
+  * Remove and return the last node of the list
+  * Space Complexity: O(1); Time Complexity: O(1)
+* `Remove(index)`
+  * Remove and return the Node at `index`
+  * Space Complexity: O(1); Time Complexity: O(n)
 * `Remove(element)`
+  * Remove all Nodes with `element` as their value
+  * Space Complexity: O(1); Time Complexity: O(n)
 
 #### Size
 * `Empty()`
@@ -48,6 +54,7 @@ This repository holds some implementations (and testing) of data structures and 
 * `Sort()`
 * `Sort(comparison)`
 * `Merge(secondList)`
+* `ToString()`
 ### Types
 * Singly Linked List (SLL)
 * Circular Singly Linked List (CLL)

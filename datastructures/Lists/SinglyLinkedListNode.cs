@@ -2,28 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace DataStructures.Lists
 {
-    public class Node<T>
+    public class SinglyLinkedListNode<T> : ILinkedListNode<T>
       {
-        public Node<T> Next { get; set; }
-        public T Element { get; set; }
+        public ILinkedListNode<T> Next { get; set; }
+        public T Value { get; set; }
 
-        public Node(int v)
+        public SinglyLinkedListNode(int v)
         {
           Next = null;
-          Element = default(T);
+          Value = default(T);
         }
-        public Node(T element)
+        public SinglyLinkedListNode(T value)
         {
-          Element = element;
+          Value = value;
           Next = null;
         }
-        public Node(T element, Node<T> nextNode)
+        public SinglyLinkedListNode(T value, SinglyLinkedListNode<T> nextNode)
         {
           Next = nextNode;
-          Element = element;
+          Value = value;
         }
       }
 }

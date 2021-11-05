@@ -8,10 +8,10 @@ using Interfaces;
 
 namespace DataStructures.Lists
 {
-  public class SinglyLinkedList<T> : IEnumerable<T>, IDeepCloneable<SinglyLinkedList<T>>
+  public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable<T>, IDeepCloneable<SinglyLinkedList<T>>
   {
-    public Node<T> Head { get; private set; }
-    public Node<T> Tail { get; private set; }
+    public ILinkedListNode<T> Head { get; private set; }
+    public ILinkedListNode<T> Tail { get; private set; }
     public long Count { get; private set; }
 
     public SinglyLinkedList()
@@ -26,43 +26,43 @@ namespace DataStructures.Lists
       {
         throw new ArgumentNullException($"Singularly Linked List copy constructor cannot take null argument");
       }
-      var walkingNode = listToCopy.Head;
-      var newListNode = new Node<T>(walkingNode.Element, null);
+      var walkingNode = (SinglyLinkedListNode<T>)listToCopy.Head;
+      var newListNode = new SinglyLinkedListNode<T>(walkingNode.Value, null);
       Head = newListNode;
 
       while(walkingNode.Next != null)
       {
-        newListNode.Next = new Node<T>(walkingNode.Next.Element, null);
-        walkingNode = walkingNode.Next;
-        newListNode = newListNode.Next;
+        newListNode.Next = new SinglyLinkedListNode<T>(walkingNode.Next.Value, null);
+        walkingNode = (SinglyLinkedListNode<T>)walkingNode.Next;
+        newListNode = (SinglyLinkedListNode<T>)newListNode.Next;
         ++Count;
       }
 
       Tail = newListNode;
     }
-    public void InsertFirst(T element)
+    public void InsertFirst(T value)
     {
-      InsertBefore(0, element);
-      //Head = new Node<T>(element, Head);
+      InsertBefore(0, value);
+      //Head = new SinglyLinkedListNode<T>(element, Head);
       // ++Count;
       // if(Count == 1) Tail = Head;
     }
-    public void InsertLast(T element)
+    public void InsertLast(T value)
     {
       if (Tail == null)
       {
-        Head = Tail = new Node<T>(element, Head);
+        Head = Tail = new SinglyLinkedListNode<T>(value, Head);
       } else {
-        Tail.Next = new Node<T>(element, null);
+        Tail.Next = new SinglyLinkedListNode<T>(value, null);
         Tail = Tail.Next;
       }
       Count++;
     }
-    public void InsertBefore(int index, T element)
+    public void InsertBefore(int index, T value)
     {
-      if(IsNull(element)) 
+      if(IsNull(value)) 
       {
-        throw new ArgumentNullException($"{nameof(element)} must be non-null");
+        throw new ArgumentNullException($"{nameof(value)} must be non-null");
       }
       if (index < 0) {
         throw new ArgumentOutOfRangeException($"{nameof(index)} must be a positive integer");
@@ -72,16 +72,16 @@ namespace DataStructures.Lists
         throw new ArgumentOutOfRangeException($"{nameof(index)} must be less than SinglyLinkedList.Count");
       }
 
-      if (index == 0)            // Add new Node as Head
+      if (index == 0)            // Add new SinglyLinkedListNode as Head
       {
-        Head = new Node<T>(element, Head);
+        Head = new SinglyLinkedListNode<T>(value, Head);
         if(Count == 0) Tail = Head;
       } else {                   // Add new Node before Node at position
         var walkingNode = Head;
         for (int i = 0; i < index - 1; ++i) {
           walkingNode = walkingNode.Next;
         }
-        var newNode = new Node<T>(element, walkingNode.Next);
+        var newNode = new SinglyLinkedListNode<T>(value, walkingNode.Next);
         walkingNode.Next = newNode;
       }
 
@@ -91,7 +91,7 @@ namespace DataStructures.Lists
     public override string ToString()
     {
       StringBuilder sb = new StringBuilder();
-      Node<T> walking = Head;
+      SinglyLinkedListNode<T> walking = Head;
       while(walking != null)
       {
         sb.Append(walking.Element);
@@ -104,7 +104,7 @@ namespace DataStructures.Lists
     public SinglyLinkedList<T> DeepClone()
     {
       var newList = new SinglyLinkedList<T>(this);
-      //newList.Head = new Node<T>(this.Head.Element, null);
+      //newList.Head = new SinglyLinkedListNode<T>(this.Head.Element, null);
       return newList;
     }
 
@@ -115,10 +115,10 @@ namespace DataStructures.Lists
 
     public IEnumerator<T> GetEnumerator()
     {
-      var walkingNode = Head;
+      SinglyLinkedListNode<T> walkingNode = Head;
       while (walkingNode != null)
       {
-        yield return walkingNode.Element;
+        yield return walkingNode.Value;
         walkingNode = walkingNode.Next;
       }
     }

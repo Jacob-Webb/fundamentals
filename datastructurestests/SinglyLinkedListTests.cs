@@ -65,6 +65,7 @@ namespace DataStructuresTests
         Assert.Throws<ArgumentOutOfRangeException>(
           () => _testList.InsertBefore(-1, "3"));
       }
+      
 
       // [Test]
       // public void MethodToTest_ConditionToTest_ExpectedResult()

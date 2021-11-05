@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DataStructures.Lists;
 
 namespace DataStructures
@@ -6,8 +8,9 @@ namespace DataStructures
   class Program
   {
       public static void Main(String[] args) {
-        var myList = new SinglyLinkedList<string>();
-        myList.InsertBefore(1, "1");
+        var myList = new LinkedList<int>();
+
+        myList.RemoveFirst();
 
     }
   }
